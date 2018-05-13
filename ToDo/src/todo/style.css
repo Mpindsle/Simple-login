@@ -1,0 +1,63 @@
+
+/* 
+    Created on : May 13, 2018, 3:44:13 PM
+    Author     : Marius
+*/
+
+/*Sets background image on scene*/
+
+.root{
+    -fx-background-color: radial-gradient(radius 275%,#696969, #4682B4);
+}
+
+/*Sets font size and font color on labels*/ 
+.label{
+    -fx-font-size: 40px;
+    -fx-text-fill: lightslategrey;
+    -fx-font-family: "Calibri";
+}
+
+#welcome-text{
+    -fx-font-size: 100px;
+    -fx-fill: white;
+    -fx-font-family: "Calibri";
+}
+
+#account-title{
+    -fx-font-size: 100px;
+    -fx-fill: white;
+    -fx-font-family: "Calibri";
+}
+
+#error-text{
+    -fx-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-family: "Calibri";
+    -fx-background-color: #696969;
+}
+
+#success-text{
+    -fx-fill: green;
+    -fx-font-size: 20px;
+    -fx-font-family: "Calibri";
+}
+
+#login-button{
+    -fx-background-color: #4682B4;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-padding: 10;
+    -fx-corner-radius: 0px;
+}
+
+#login-button:hover{
+    -fx-background-color: linear-gradient(#4682B4,#5F9EA0);
+}
+
+#textfield-user{
+    -fx-font-size: 20px;
+}
+
+#textfield-password{
+    -fx-font-size: 20px;
+}
