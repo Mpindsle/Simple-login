@@ -54,10 +54,16 @@
     -fx-background-color: linear-gradient(#4682B4,#5F9EA0);
 }
 
-#textfield-user{
+#textfield-user,
+#textfield-password,
+#create-username,
+#create-password,
+#check-password{
     -fx-font-size: 20px;
 }
 
-#textfield-password{
-    -fx-font-size: 20px;
+#account-title{
+    -fx-font-size: 80px;
+    -fx-fill: white;
+    -fx-font-family: "Calibri";
 }

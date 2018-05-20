@@ -41,6 +41,7 @@ public class Login extends Application {
        //Removes the ability to resize the log in window
        primaryStage.setResizable(false);
        
+       // SCENE LOGIN START
        
        //Creates a new grid for the log in window
        GridPane gridLogin = new GridPane();
@@ -52,26 +53,10 @@ public class Login extends Application {
         //Creates new scene
        Scene scene = new Scene(gridLogin, 1024, 800);
        
-       //Creates a new grid for the account window
-       GridPane gridCreateAccount = new GridPane();
-       gridCreateAccount.setAlignment(Pos.CENTER);
-       gridCreateAccount.setHgap(10);
-       gridCreateAccount.setVgap(10);
-       gridCreateAccount.setPadding(new Insets(25, 25, 25, 25));
-       
        //Sets a welcome text for the log in window
        Text scenetitle = new Text("   Welcome");
        scenetitle.setId("welcome-text");
        gridLogin.add(scenetitle, 0,0,2,1);
-       
-       //Sets a title for the account window
-       Text accountTitle = new Text("Welcome");
-       accountTitle.setId("account-title");
-       gridCreateAccount.add(accountTitle, 0,0,2,1);
-       
-       //Creates text
-       /*Label userName = new Label("Username: ");
-       gridLogin.add(userName, 0,1);*/
        
        //Creates input field
        TextField userTextField = new TextField();
@@ -108,12 +93,6 @@ public class Login extends Application {
        userBtn.getChildren().add(createUser);
        gridLogin.add(userBtn, 1,4);
        
-       Button returnToLogIn = new Button("Go back");
-       HBox returnBtn = new HBox(10);
-       returnBtn.setAlignment(Pos.TOP_LEFT);
-       returnBtn.getChildren().add(returnToLogIn);
-       gridCreateAccount.add(returnBtn, 1, 4);
-       
        //Creates new text for error message
        Text error = new Text();
        error.setId("error-text");
@@ -144,20 +123,83 @@ public class Login extends Application {
               }
        });
        
+       //SCENE LOGIN END
+       
+       //SCENE CREATE ACCOUNT START
+       
+       //Creates a new grid for the account window
+       GridPane gridCreateAccount = new GridPane();
+       gridCreateAccount.setAlignment(Pos.TOP_CENTER);
+       gridCreateAccount.setHgap(10);
+       gridCreateAccount.setVgap(10);
+       gridCreateAccount.setPadding(new Insets(25, 25, 25, 25));
+       
+       //Creates new scene for creating of accounts
+       Scene createAccount = new Scene(gridCreateAccount, 1024, 800);
+       
+       //Sets a title for the account window
+       Text accountTitle = new Text("Create account");
+       accountTitle.setId("account-title");
+       gridCreateAccount.add(accountTitle, 0,0,2,1);
+       
+       //Creates text
+       /*Label userName = new Label("Username: ");
+       gridLogin.add(userName, 0,1);*/
+       
+       //Creates new button to return to the main window
+       Button returnToLogIn = new Button("Go back");
+       HBox returnBtn = new HBox(10);
+       returnBtn.setAlignment(Pos.TOP_LEFT);
+       returnBtn.getChildren().add(returnToLogIn);
+       gridCreateAccount.add(returnBtn, 1, 1);
+       
+       //Textfield for creating username
+       TextField createUsername = new TextField();
+       createUsername.setId("create-username");
+       createUsername.setPromptText("Username");
+       createUsername.setPrefHeight(40);
+       gridCreateAccount.add(createUsername, 1,15);
+       
+       //Textfield for creating password
+       TextField createPassword = new TextField();
+       createPassword.setId("create-password");
+       createPassword.setPromptText("Type your password");
+       createPassword.setPrefHeight(40);
+       gridCreateAccount.add(createPassword, 1, 16);
+       
+       //Textfield for checking if passwords match
+       TextField checkPassword = new TextField();
+       checkPassword.setId("check-password");
+       checkPassword.setPromptText("Retype your password");
+       checkPassword.setPrefHeight(40);
+       gridCreateAccount.add(checkPassword, 1, 17);
+       
+       //Button to register account
+       Button registerAccount = new Button("Register account");
+       HBox registerBtn = new HBox(10);
+       registerBtn.setAlignment(Pos.BOTTOM_RIGHT);
+       registerBtn.getChildren().add(registerAccount);
+       gridCreateAccount.add(registerBtn, 1, 19);
+       
+       //SCENE CREATE ACCOUNT END
+       
        //Changes scene to create account if pressed
        createUser.setOnAction(e -> {
-           Scene createAccount = new Scene(gridCreateAccount, 1024, 800);
            primaryStage.setScene(createAccount);
-       });
+           primaryStage.setTitle("Create account");
+               });
        
-       returnToLogIn.setOnAction(e -> primaryStage.setScene(scene));
-       
-      
+       //Returns to the login page
+       returnToLogIn.setOnAction(e -> {
+           primaryStage.setScene(scene);
+           primaryStage.setTitle("Log in");
+               });
        
        //Sets scene in stage
-       primaryStage.setScene(scene);
+       primaryStage.setScene(createAccount);
        //Sets the path for the stylesheet
        scene.getStylesheets().add(Login.class.getResource("style.css").toExternalForm());
+       createAccount.getStylesheets().add(Login.class.getResource("style.css").toExternalForm());
        
        //Calls the show method to show the window
        primaryStage.show();
