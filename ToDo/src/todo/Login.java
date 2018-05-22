@@ -6,6 +6,13 @@
 package todo;
 
 import java.awt.Image;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -87,10 +94,10 @@ public class Login extends Application {
        gridLogin.add(hbBtn, 1,3);
        
        //Creates new button to access the create account window
-       Button createUser = new Button("Or create an account");
+       Button toUserScene = new Button("Or create an account");
        HBox userBtn = new HBox(10);
        userBtn.setAlignment(Pos.BOTTOM_RIGHT);
-       userBtn.getChildren().add(createUser);
+       userBtn.getChildren().add(toUserScene);
        gridLogin.add(userBtn, 1,4);
        
        //Creates new text for error message
@@ -181,10 +188,20 @@ public class Login extends Application {
        registerBtn.getChildren().add(registerAccount);
        gridCreateAccount.add(registerBtn, 1, 19);
        
+       registerAccount.setOnAction(e -> {
+           try {
+               saveToFile("USERNAME: " + createUsername.getText() + "\r\n" , "PASSWORD: " + checkPassword.getText() + "\r\n"  + "\r\n");
+           } catch (FileNotFoundException ex) {
+               Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+           } catch (UnsupportedEncodingException ex) {
+               Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       });
+       
        //SCENE CREATE ACCOUNT END
        
        //Changes scene to create account if pressed
-       createUser.setOnAction(e -> {
+       toUserScene.setOnAction(e -> {
            primaryStage.setScene(createAccount);
            primaryStage.setTitle("Create account");
                });
@@ -211,6 +228,14 @@ public class Login extends Application {
         launch(args);
     }
     
-    
+    //Saves username and password to file
+    public static void saveToFile(String user, String password) throws FileNotFoundException, UnsupportedEncodingException{
+        PrintWriter writer = new PrintWriter(new FileOutputStream(new File("accounts.txt"), true));
+        
+        writer.append(user);
+        writer.append(password);
+        writer.close();
+        
+    }
     
 }
